@@ -29,8 +29,7 @@ export default async (req, context) => {
     });
 
     if (!response.ok) {
-      throw new Error(`Google API error: ${response.statusText}`);
-    }
+    throw new Error('Google API error: ' + response.statusText);    }
 
     const data = await response.json();
     const chords = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No chords found';
