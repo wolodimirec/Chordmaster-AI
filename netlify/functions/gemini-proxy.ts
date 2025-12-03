@@ -16,7 +16,7 @@ export default async (req, context) => {
 
     const prompt = `Find the chords for the song "${title}" by ${artist}. Return only the chord progression.`;
 
-    const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent', {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent',?key=${apiKe`}', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
