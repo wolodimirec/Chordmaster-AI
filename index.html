@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ChordMaster AI</title>
+        <meta name="gemini-api-key" content="" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
@@ -41,7 +42,13 @@
   }
 }
 </script>
-</head>
+    <script>
+      // Inject Gemini API key from Netlify environment
+      if (typeof window !== 'undefined') {
+        window.__GEMINI_API_KEY__ = import.meta.env.VITE_GEMINI_API_KEY || '';
+      }
+    </script>
+  </head>
   <body>
     <div id="root"></div>
         <script src="./index.tsx" type="module"></script>
