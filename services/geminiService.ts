@@ -1,22 +1,23 @@
 export const fetchSongChords = async (artist: string, title: string): Promise<SongData> => {
   try {
-    const response = await fetch('/.netlify/functions/gemini-proxy', {
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+    const prompt = `Find the chords for the song "${title}" by ${artist}. Return only the chord progression.`;
+    
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ artist, title }),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }]
+      })
     });
 
-    if (!response.ok) {
-      throw new Error('Failed to fetch song chords');
-    }
-
+    if (!response.ok) throw new Error('Failed to fetch');
     const data = await response.json();
-    return data;
+    const chords = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No chords found';
+
+    return { title, artist, chords, originalKey: 'C' };
   } catch (error) {
-    console.error('Error fetching chords:', error);
-    throw error;
+    throw new Error('Failed to fetch song chords');
   }
 };
 
