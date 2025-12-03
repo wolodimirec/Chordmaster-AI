@@ -1,0 +1,5 @@
+{
+  "name": "ChordMaster AI",
+  "description": "Inteligentna transpozycja akordów w czasie rzeczywistym z wykorzystaniem Google Gemini API.",
+  "requestFramePermissions": []
+}
