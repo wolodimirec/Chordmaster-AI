@@ -2,7 +2,7 @@ import { GoogleGenAI } from "@google/genai";
 import { SongData } from "../types";
 
 export const fetchSongChords = async (artist: string, title: string): Promise<SongData> => {
-  const apiKey = process.env.API_KEY;
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY
   if (!apiKey) {
     throw new Error("API Key is missing");
   }
