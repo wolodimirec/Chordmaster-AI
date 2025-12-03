@@ -36,7 +36,7 @@ export default async (req, context) => {
 
     return new Response(
       JSON.stringify({ title, artist, chords, originalKey: 'C' }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
+      { { status: 200, headers: { 'Content-Type': 'application/json' } } }
     );
   } catch (error) {
     console.error('Error:', error);
