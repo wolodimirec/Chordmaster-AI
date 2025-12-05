@@ -52,3 +52,13 @@ export const fetchSongChords = async (artist: string, title: string): Promise<So
     const firstOpen = text.indexOf('{');
     const lastClose = text.lastIndexOf('}');
     if (firstOpen !== -1 && lastClose !== -1) {
+            text = text.substring(firstOpen, lastClose + 1);
+          }
+
+        const songData: SongData = JSON.parse(text);
+        return songData;
+      } catch (error) {
+        console.error('Error fetching chords:', error);
+        throw error;
+      }
+  };
