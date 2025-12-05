@@ -3,8 +3,7 @@ export const fetchSongChords = async (artist: string, title: string): Promise<So
     const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
     const prompt = `Find the chords for the song "${title}" by ${artist}. Return only the chord progression.`;
     
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
-      method: 'POST',
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         contents: [{ parts: [{ text: prompt }] }]
